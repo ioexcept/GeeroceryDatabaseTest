@@ -54,8 +54,8 @@ errorPage="" %>
 	rTime = (System.currentTimeMillis() - startTime);
 	runTime = rTime + "";
 	insert.setString(1,ipAddress);
-	insert.setInt(2,dbCon);
-	insert.setInt(3,rTime);
+	insert.setLong(2,dbCon);
+	insert.setLong(3,rTime);
 	insert.executeUpdate();
 
 	try{
