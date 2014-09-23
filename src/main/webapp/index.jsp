@@ -43,12 +43,17 @@ errorPage="" %>
 
 
 
+	PreparedStatement select = conn.prepareStatement("select count(*) as total from visitors");
+	ResultSet rset = select.executeQuery();
+	rset.next();
+	String totalVisitors = rset.getString("total");
 
 	String ipAddress  = request.getHeader("X-FORWARDED-FOR");  
         if(ipAddress == null)  
         {  
           ipAddress = request.getRemoteAddr();  
         }  
+
 	PreparedStatement insert = conn.prepareStatement("insert into visitors(ip,dbconnect,runtime) values(?,?,?)" );
 
 	rTime = (System.currentTimeMillis() - startTime);
@@ -81,10 +86,9 @@ Database Connection Test Status: <%= status %>
 <hr width="50%"/>
 Version: <%= version %><br>
 Build Time: <%= buildTime %><br>
+<hr width="50%" />
+Visitor Count: <%= totalVisitors %>
 </div>
-<br>
-<%= ipAddress %>
-
 
 </body>
 </html>
