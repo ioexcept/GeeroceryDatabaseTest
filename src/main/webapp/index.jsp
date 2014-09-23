@@ -5,6 +5,11 @@ import="java.sql.*,java.util.*"
 errorPage="" %>
 
 <%
+	long startTime = System.currentTimeMillis();
+	String start_date_time = new java.util.Date().toString();
+	String dbConnectTime = "N/A";
+	String runTime  = "N/A";
+
         String status = "Failed";
         String SHARED_DATABASE_URL = System.getenv().get("DATABASE_URL");
 
@@ -28,12 +33,14 @@ errorPage="" %>
  
         if(!conn.isClosed()){
         	status = "Successful";
+		dbConnectTime = (System.currentTimeMillis() - startTime) + "";
         }
 
 	try{
 		conn.close();
 	}catch(Exception ex){}
 
+	runTime = (System.currentTimeMillis() - startTime) + "";
 %>
 
 <html>
@@ -43,6 +50,10 @@ errorPage="" %>
 
 <body>
 <div align="center">
+DB Connection Time: <%= dbConnectTime %> milliseconds<br>
+Total Run Time: <%= runTime %> milliseconds<br>
+
+<br>
 Demo Test: push, pull, compile, deply - V02<br>
 Database Connection Test Status: <%= status %>
 </div>
