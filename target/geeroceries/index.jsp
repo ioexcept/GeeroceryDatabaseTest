@@ -5,6 +5,13 @@ import="java.sql.*,java.util.*"
 errorPage="" %>
 
 <%
+	long startTime = System.currentTimeMillis();
+	String start_date_time = new java.util.Date().toString();
+	String dbConnectTime = "N/A";
+	String runTime  = "N/A";
+	
+	String version = application.getInitParameter("VERSION"); 
+	String buildTime = application.getInitParameter("BUILD_TIME"); 
         String status = "Failed";
         String SHARED_DATABASE_URL = System.getenv().get("DATABASE_URL");
 
@@ -22,28 +29,38 @@ errorPage="" %>
         System.out.println("URL: " + URL);
 //        out.println("URL: " + URL + "<br>");
 
-//      	Class.forName("org.postgresql.Driver");
+      	Class.forName("org.postgresql.Driver");
         Connection conn = DriverManager.getConnection(URL,DBUSERNAME,DBPASSWORD);
         System.out.println("Connection established [" + !conn.isClosed() + "]");
  
         if(!conn.isClosed()){
         	status = "Successful";
+		dbConnectTime = (System.currentTimeMillis() - startTime) + "";
         }
 
 	try{
 		conn.close();
 	}catch(Exception ex){}
 
+	runTime = (System.currentTimeMillis() - startTime) + "";
 %>
 
 <html>
 <head>
-<title>PostGres Connection Test</title>
+<title>AWS PostGres Connection Test</title>
 </head>
 
 <body>
 <div align="center">
+DB Connection Time: <%= dbConnectTime %> milliseconds<br>
+Total Run Time: <%= runTime %> milliseconds<br>
+
+<br>
+Demo Test: push, pull, compile, deply - V02<br>
 Database Connection Test Status: <%= status %>
+<hr width="50%"/>
+Version: <%= version %><br>
+Build Time: <%= buildTime %><br>
 </div>
 </body>
 </html>

@@ -62,6 +62,10 @@ Database Connection Test Status: <%= status %>
 Version: <%= version %><br>
 Build Time: <%= buildTime %><br>
 </div>
+<br>
+<%= request.getRemoteAddr() %>
+
+
 </body>
 </html>
 
