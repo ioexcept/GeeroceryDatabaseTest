@@ -7,6 +7,8 @@ errorPage="" %>
 <%
 	long startTime = System.currentTimeMillis();
 	String start_date_time = new java.util.Date().toString();
+	long dbCon = -1;
+	long rTime = -1;
 	String dbConnectTime = "N/A";
 	String runTime  = "N/A";
 	
@@ -35,20 +37,31 @@ errorPage="" %>
  
         if(!conn.isClosed()){
         	status = "Successful";
-		dbConnectTime = (System.currentTimeMillis() - startTime) + "";
+		dbCon = (System.currentTimeMillis() - startTime);
+		dbConnectTime = dbCon + "";
         }
 
-	try{
-		conn.close();
-	}catch(Exception ex){}
 
-	runTime = (System.currentTimeMillis() - startTime) + "";
+
 
 	String ipAddress  = request.getHeader("X-FORWARDED-FOR");  
         if(ipAddress == null)  
         {  
           ipAddress = request.getRemoteAddr();  
         }  
+	PreparedStatement insert = conn.prepareStatement("insert into visitors(ip,dbconnect,runtime) values(?,?,?)" );
+
+	rTime = (System.currentTimeMillis() - startTime);
+	runTime = rTime + "";
+	insert.setString(1,ipAddress);
+	insert.setInt(2,dbCon);
+	insert.setInt(3,rTime);
+	insert.executeUpdate();
+
+	try{
+		conn.close();
+	}catch(Exception ex){}
+
        
 %>
 
