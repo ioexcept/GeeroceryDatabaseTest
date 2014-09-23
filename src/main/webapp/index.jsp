@@ -45,7 +45,7 @@ errorPage="" %>
 
 <html>
 <head>
-<title>PostGres Connection Test</title>
+<title>AWS PostGres Connection Test</title>
 </head>
 
 <body>
