@@ -43,6 +43,7 @@ errorPage="" %>
 
 <body>
 <div align="center">
+Demo Test: push, pull, compile, deply - V01<br>
 Database Connection Test Status: <%= status %>
 </div>
 </body>
