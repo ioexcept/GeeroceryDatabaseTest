@@ -22,7 +22,7 @@ errorPage="" %>
         System.out.println("URL: " + URL);
 //        out.println("URL: " + URL + "<br>");
 
-//      	Class.forName("org.postgresql.Driver");
+      	Class.forName("org.postgresql.Driver");
         Connection conn = DriverManager.getConnection(URL,DBUSERNAME,DBPASSWORD);
         System.out.println("Connection established [" + !conn.isClosed() + "]");
  
