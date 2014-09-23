@@ -6,6 +6,14 @@
 	<version>1.0</version>
 	<packaging>war</packaging>
 	<name>GeeroceryList</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>MM-dd-yyyy HH:mm:ss</maven.build.timestamp.format>
+		<build.version>${pom.version}</build.version>
+	</properties>
+
 	<build>
 		<finalName>geeroceries</finalName>
 		<plugins>
@@ -17,6 +25,23 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webResources>
+						<webResource>
+							<directory>src/main/webapp/WEB-INF</directory>
+							<includes>
+								<include>web.xml</include>
+							</includes>
+							<targetPath>WEB-INF</targetPath>
+							<filtering>true</filtering>
+						</webResource>
+					</webResources>
+				</configuration>
+			</plugin>
+
 		</plugins>
 		<resources>
 			<resource>

@@ -9,7 +9,9 @@ errorPage="" %>
 	String start_date_time = new java.util.Date().toString();
 	String dbConnectTime = "N/A";
 	String runTime  = "N/A";
-
+	
+	String version = application.getInitParameter("VERSION"); 
+	String buildTime = application.getInitParameter("BUILD_TIME"); 
         String status = "Failed";
         String SHARED_DATABASE_URL = System.getenv().get("DATABASE_URL");
 
@@ -56,6 +58,11 @@ Total Run Time: <%= runTime %> milliseconds<br>
 <br>
 Demo Test: push, pull, compile, deply - V02<br>
 Database Connection Test Status: <%= status %>
+<hr width="50%"/>
+<ul>
+<li>Version: <%= version %></li>
+<li>Build Time: <%= buildTime %></li>
+</ul>
 </div>
 </body>
 </html>
