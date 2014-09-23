@@ -59,10 +59,8 @@ Total Run Time: <%= runTime %> milliseconds<br>
 Demo Test: push, pull, compile, deply - V02<br>
 Database Connection Test Status: <%= status %>
 <hr width="50%"/>
-<ul>
-<li>Version: <%= version %></li>
-<li>Build Time: <%= buildTime %></li>
-</ul>
+Version: <%= version %><br>
+Build Time: <%= buildTime %><br>
 </div>
 </body>
 </html>
