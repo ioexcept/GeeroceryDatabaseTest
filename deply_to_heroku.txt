@@ -1,0 +1,14 @@
+git init
+
+git add .
+
+git commit -m "initializing"
+
+
+.... probably dont need the git stuff when using war files 
+
+heroku create --stack cedar darkowarriors
+
+#target\AnniversaryGolfSignup.war
+
+heroku deploy:war --war target\AnniversaryGolfSignup.war --app darkowarriors 
