@@ -43,6 +43,13 @@ errorPage="" %>
 	}catch(Exception ex){}
 
 	runTime = (System.currentTimeMillis() - startTime) + "";
+
+	String ipAddress  = request.getHeader("X-FORWARDED-FOR");  
+        if(ipAddress == null)  
+        {  
+          ipAddress = request.getRemoteAddr();  
+        }  
+       
 %>
 
 <html>
@@ -63,7 +70,7 @@ Version: <%= version %><br>
 Build Time: <%= buildTime %><br>
 </div>
 <br>
-<%= request.getRemoteAddr() %>
+<%= ipAddress %>
 
 
 </body>
